@@ -1,0 +1,178 @@
+/* =====================================================================
+   gaya.css - tema visual KoncoTani (nuansa sawah hijau)
+   Dimuat oleh app.py lewat st.markdown(..., unsafe_allow_html=True).
+
+   ATURAN UTAMA YANG DIPEGANG DI SELURUH FILE INI:
+   Semua hiasan (pola padi & pita persawahan) hanya boleh berada di
+   LAPISAN LATAR (z-index 0) dan tidak pernah menyentuh area teks.
+   Setiap gelembung percakapan diberi warna SOLID (bukan transparan)
+   dengan teks gelap, sehingga pertanyaan petani dan jawaban dari API
+   tetap terbaca jelas berapa pun ramainya latar belakang.
+   ===================================================================== */
+
+:root {
+    --hijau-tua: #1b5e20;
+    --hijau: #2e7d32;
+    --hijau-muda: #a5d6a7;
+    --hijau-pucat: #dff0d2;
+    --garis: #c8e6c9;
+    --teks: #1b2a1b;
+}
+
+/* ---------------------------------------------------------------
+   1. LATAR HALAMAN
+   Gradien dari "langit" di atas menuju "sawah" di bawah.
+   --------------------------------------------------------------- */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(180deg, #f4faf0 0%, #eaf5e1 45%, #dcedc8 100%);
+}
+
+/* Lapisan 1: pola tangkai padi yang berulang (wallpaper halus).
+   Opasitas sengaja rendah supaya tidak meramaikan area baca. */
+[data-testid="stAppViewContainer"]::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g transform='translate(34,126)'><g fill='none' stroke='%232e7d32' stroke-width='2.2' stroke-linecap='round'><path d='M0 0 C2 -20 2 -38 -2 -56'/><path d='M0 -16 C-10 -22 -16 -30 -18 -40'/><path d='M0 -28 C10 -32 16 -40 18 -50'/></g><g fill='%234caf50'><ellipse cx='-2' cy='-62' rx='3' ry='5.5' transform='rotate(-15 -2 -62)'/><ellipse cx='-7' cy='-54' rx='3' ry='5.5' transform='rotate(-25 -7 -54)'/><ellipse cx='3' cy='-54' rx='3' ry='5.5' transform='rotate(-5 3 -54)'/><ellipse cx='-5' cy='-46' rx='3' ry='5.5' transform='rotate(-25 -5 -46)'/><ellipse cx='1' cy='-46' rx='3' ry='5.5' transform='rotate(-5 1 -46)'/></g></g><g transform='translate(116,92) rotate(18)'><g fill='none' stroke='%232e7d32' stroke-width='2.2' stroke-linecap='round'><path d='M0 0 C2 -20 2 -38 -2 -56'/><path d='M0 -16 C-10 -22 -16 -30 -18 -40'/><path d='M0 -28 C10 -32 16 -40 18 -50'/></g><g fill='%234caf50'><ellipse cx='-2' cy='-62' rx='3' ry='5.5' transform='rotate(-15 -2 -62)'/><ellipse cx='-7' cy='-54' rx='3' ry='5.5' transform='rotate(-25 -7 -54)'/><ellipse cx='3' cy='-54' rx='3' ry='5.5' transform='rotate(-5 3 -54)'/><ellipse cx='-5' cy='-46' rx='3' ry='5.5' transform='rotate(-25 -5 -46)'/><ellipse cx='1' cy='-46' rx='3' ry='5.5' transform='rotate(-5 1 -46)'/></g></g></svg>");
+    background-size: 160px 160px;
+    background-repeat: repeat;
+}
+
+/* Lapisan 2: pita persawahan bertingkat di dasar layar. */
+[data-testid="stAppViewContainer"]::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 190px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='200' viewBox='0 0 1200 200' preserveAspectRatio='none'><path d='M0 88 C150 58 300 118 450 88 C600 58 760 118 900 88 C1040 60 1140 98 1200 84 L1200 200 L0 200 Z' fill='%23a5d6a7'/><path d='M0 128 C200 103 400 148 600 128 C800 108 1000 148 1200 126 L1200 200 L0 200 Z' fill='%2381c784'/><path d='M0 168 C250 148 500 183 750 166 C950 153 1100 178 1200 166 L1200 200 L0 200 Z' fill='%2366bb6a'/></svg>");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/* Semua konten nyata dinaikkan di atas kedua lapisan hiasan di atas. */
+[data-testid="stMain"],
+[data-testid="stSidebar"],
+[data-testid="stHeader"],
+[data-testid="stBottom"] {
+    position: relative;
+    z-index: 1;
+}
+
+[data-testid="stHeader"] {
+    background: transparent;
+}
+
+/* ---------------------------------------------------------------
+   2. KARTU PERCAKAPAN
+   Seluruh isi halaman duduk di atas kartu putih pekat (93%),
+   jadi latar sawah tidak pernah bercampur dengan teks.
+   --------------------------------------------------------------- */
+[data-testid="stMainBlockContainer"] {
+    background: rgba(255, 255, 255, 0.93);
+    border: 1px solid var(--garis);
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(27, 94, 32, 0.1);
+    backdrop-filter: blur(3px);
+    padding: 2rem 2rem 6rem;
+    margin-top: 1rem;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--hijau-tua);
+}
+
+/* ---------------------------------------------------------------
+   3. GELEMBUNG CHAT - bagian paling penting untuk keterbacaan
+   --------------------------------------------------------------- */
+[data-testid="stChatMessage"] {
+    background: #ffffff;           /* solid, bukan transparan */
+    color: var(--teks);
+    border: 1px solid #ddebd6;
+    border-radius: 14px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.65rem;
+    box-shadow: 0 1px 3px rgba(27, 94, 32, 0.06);
+}
+
+/* Pesan dari petani (pengguna) - hijau muda solid */
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+    background: #e8f5e0;
+    border-color: var(--hijau-muda);
+}
+
+/* Jawaban KoncoTani (avatar 🌾) - putih dengan garis hijau di kiri */
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarCustom"]) {
+    border-left: 4px solid var(--hijau);
+}
+
+/* Blok kode di dalam jawaban tetap kontras */
+[data-testid="stChatMessage"] code {
+    background: #f1f8e9;
+    color: #1b5e20;
+}
+
+/* ---------------------------------------------------------------
+   4. KOTAK INPUT
+   Dibuat putih solid + garis hijau supaya tetap menonjol walau
+   pita persawahan berada tepat di belakangnya.
+   --------------------------------------------------------------- */
+[data-testid="stBottom"],
+[data-testid="stBottomBlockContainer"] {
+    background: transparent;
+}
+
+[data-testid="stChatInput"] {
+    background: #ffffff;
+    border: 2px solid var(--hijau-muda);
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(27, 94, 32, 0.14);
+}
+
+[data-testid="stChatInputTextArea"] {
+    color: var(--teks);
+}
+
+/* ---------------------------------------------------------------
+   5. SIDEBAR & KOMPONEN LAIN
+   --------------------------------------------------------------- */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #eaf5e1 0%, var(--hijau-pucat) 100%);
+    border-right: 1px solid var(--garis);
+}
+
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: var(--hijau-tua);
+}
+
+[data-testid="stExpander"] {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--garis);
+    border-radius: 12px;
+}
+
+/* ---------------------------------------------------------------
+   6. LAYAR SEMPIT (laptop kecil / ponsel)
+   Kartu dirapatkan supaya ruang baca tidak menyempit.
+   --------------------------------------------------------------- */
+@media (max-width: 640px) {
+    [data-testid="stMainBlockContainer"] {
+        padding: 1.2rem 1rem 5.5rem;
+        border-radius: 14px;
+    }
+
+    [data-testid="stAppViewContainer"]::after {
+        height: 130px;
+        opacity: 0.35;
+    }
+}

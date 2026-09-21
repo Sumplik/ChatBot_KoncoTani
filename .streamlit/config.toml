@@ -1,0 +1,12 @@
+# Tema dasar Streamlit untuk KoncoTani.
+# base = "light" sengaja dikunci supaya warna teks selalu gelap di atas kartu
+# terang - kalau mengikuti mode gelap browser, teks percakapan bisa jadi
+# tabrakan dengan latar sawah yang terang.
+
+[theme]
+base = "light"
+primaryColor = "#2E7D32"            # hijau daun padi - tombol, slider, fokus
+backgroundColor = "#F4FAF0"         # hijau sangat muda, latar halaman
+secondaryBackgroundColor = "#E5F2DC" # latar sidebar & kotak input
+textColor = "#1B2A1B"               # hijau kehitaman, kontras tinggi
+font = "sans serif"

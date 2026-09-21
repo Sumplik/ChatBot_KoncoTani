@@ -1,0 +1,13 @@
+*
+
+!.gitignore
+!.env.example
+!requirements.txt
+!chatbot_core.py
+!app.py
+!chat_cli.py
+!gaya.css
+
+!.streamlit/
+.streamlit/*
+!.streamlit/config.toml
