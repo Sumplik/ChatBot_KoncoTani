@@ -22,7 +22,7 @@ KoncoTani juga ahli dalam urusan asupan nutrisi tanaman dan perawatan lahan pert
 ---
 
 base Python
-pip install -r requirements.txt
-Python 3.10 atau lebih baru (kodenya memakai sintaks str | None; di Python 3.9 akan error saat start).
-Menyalin .env.example jadi .env lalu mengisi key dari Gemini, yang didapat di Ai Studio
-streamlit run app.py
+1. pip install -r requirements.txt
+2. Python 3.10 atau lebih baru (kodenya memakai sintaks str | None; di Python 3.9 akan error saat start).
+3. Menyalin .env.example jadi .env lalu mengisi key dari Gemini, yang didapat di Ai Studio
+4. streamlit run app.py
